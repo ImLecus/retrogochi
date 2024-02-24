@@ -6,3 +6,5 @@ class Sprite:
         self.screen = screen
     def draw(self):
         self.screen.blit(self.img, self.rect)
+    def undraw(self):
+        self.screen.blit(self.img, self.rect, self.rect)
