@@ -6,6 +6,6 @@ class Text:
         self.screen = screen
     def draw(self) -> None:
         """Draws the text on the screen"""
-        font = game.font.Font("src/PixCon.ttf", 16)
+        font = game.font.Font("src/PixCon.ttf", 18)
         img = font.render(self.text, True, (0,29,42))
         self.screen.blit(img, self.rect)

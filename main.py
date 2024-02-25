@@ -34,7 +34,7 @@ home = Scene([
     Sprite("src/bg.png", screen, (SPACE / 2, SPACE + SPACE / 2)), # Background top
     Button(Sprite("src/poop.png", screen, (SPACE / 2 + 160, SPACE / 2 + 64))), # Poop
     Button(Sprite("src/settings.png", screen, (48,48))), # Settings
-    Text(screen, "Gochi", (SPACE / 2 - 120, 16, 240, 64)), # Tamagochi's name
+    Text(screen, "Gochi", (SPACE / 2 - 48, 32, 240, 64)), # Tamagochi's name
     DialogFrame(screen, "Hey! I'm.. well, I don't have a name, but I'm your retrogochi. I know! \nYou can give me a name."), # Dialog Frame
     Button(Sprite("src/gochi.png", screen, (SPACE / 2, SPACE / 2 - 32))) # Tamagochi
 ])
@@ -58,11 +58,13 @@ def mouse_under_settings_btn():
 def mouse_under_gochi():
     pos = game.mouse.get_pos()
     return (SPACE / 2 - 64 < pos[0] < SPACE / 2 + 64) and (200 < pos[1] < 400) and not isModalActive
+square = game.draw.rect(screen, (255,0,0), (SPACE / 2 - 120, 16, 240, 64))
 
 while True:
     # --- RE-RENDER THE SCENE ---
     screen.fill((0,190,145))
     scenes[scene_pointer].render()
+    #game.draw.rect(screen, (255,0,0), (SPACE / 2 - 120, 16, 240, 64), 1)
     # --- MOVING THE BACKGROUND ---
     scenes[scene_pointer][0].move(0,-1)
     scenes[scene_pointer][1].move(0,-1)
