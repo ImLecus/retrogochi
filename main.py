@@ -6,13 +6,16 @@ from text import *
 from button import *
 from dialogframe import *
 from scene import *
-
+from dialogs import *
+import random
+from gochi import *
 # --- INITIALIZING PYGAME ---
 
 SPACE = 640
 game.init()
 screen = game.display.set_mode((SPACE, SPACE))
 game.display.set_caption("Retrogochi")
+gochi = Gochi()
 
 # --- MODAL ---
 isModalActive = False
@@ -27,7 +30,7 @@ modalimg.move(SPACE / 8, SPACE / 4)
 modaltext = Text(screen, "Give your pet a name:", (SPACE / 8 + 30, SPACE / 4 + 30, 100, 100))
 
 # --- SCENES ---
-
+dialogtext = ""
 # NOTE: Background element must be the first in the list
 home = Scene([
     Sprite("src/bg.png", screen, (SPACE / 2, SPACE / 2)), # Background
@@ -35,8 +38,9 @@ home = Scene([
     Button(Sprite("src/poop.png", screen, (SPACE / 2 + 160, SPACE / 2 + 64))), # Poop
     Button(Sprite("src/settings.png", screen, (48,48))), # Settings
     Text(screen, "Gochi", (SPACE / 2 - 48, 32, 240, 64)), # Tamagochi's name
-    DialogFrame(screen, "Hey! I'm.. well, I don't have a name, but I'm your retrogochi. I know! \nYou can give me a name."), # Dialog Frame
-    Button(Sprite("src/gochi.png", screen, (SPACE / 2, SPACE / 2 - 32))) # Tamagochi
+    DialogFrame(screen, dialogtext), # Dialog Frame
+    Button(Sprite("src/gochi.png", screen, (SPACE / 2, SPACE / 2 - 32))), # Tamagochi
+    Sprite("src/bars.png",screen ,(0 + 100,SPACE / 2 - 100))
 ])
 
 settings = Scene([
@@ -95,11 +99,13 @@ while True:
         if event.type == game.MOUSEBUTTONDOWN:
             pos = game.mouse.get_pos()
             # SETTINGS BUTTON and GO BACK BUTTON
-            if (16 < pos[0] < 80) and (16 < pos[1] < 80) and not isModalActive: 
+            if mouse_under_settings_btn(): 
                 if scene_pointer == 0:
                     scene_pointer = 1
                 elif scene_pointer == 1:
                     scene_pointer = 0
-
+            elif mouse_under_gochi:
+                print(dialogs[random.randint(0, len(dialogs) - 1)])
+                dialogtext = dialogs[random.randint(0, len(dialogs) - 1)]
 
     game.display.flip()
