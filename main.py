@@ -35,7 +35,6 @@ dialogtext = ""
 home = Scene([
     Sprite("src/bg.png", screen, (SPACE / 2, SPACE / 2)), # Background
     Sprite("src/bg.png", screen, (SPACE / 2, SPACE + SPACE / 2)), # Background top
-    Button(Sprite("src/poop.png", screen, (SPACE / 2 + 160, SPACE / 2 + 64))), # Poop
     Button(Sprite("src/settings.png", screen, (48,48))), # Settings
     Text(screen, "Gochi", (SPACE / 2 - 48, 32, 240, 64)), # Tamagochi's name
     DialogFrame(screen, dialogtext), # Dialog Frame
