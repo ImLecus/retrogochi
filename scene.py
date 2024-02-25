@@ -9,3 +9,5 @@ class Scene:
     def bg(self) -> Sprite:
         """Returns the background image element"""
         return self.elements[0]
+    def __getitem__(self, n):
+        return self.elements[n]
